@@ -1,3 +1,4 @@
+
 export const triggerSlackAlert = (alert) => {
     console.log(`[SOAR - ACTIONS] 🚨 Alert sent to Slack: High severity attack detected from IP ${alert.attacker_ip}!`);
 };

@@ -1,6 +1,7 @@
 import express from "express";
 import dotenv from "dotenv";
 import webhookRoute from "./routes/webhook.route.js";
+import firewallRoute from "./routes/firewall.route.js";
 
 dotenv.config();
 
@@ -9,6 +10,7 @@ app.use(express.json());
 
 // Routes Declaration
 app.use("/api/v1/alerts", webhookRoute);
+app.use("/api/v1/firewall", firewallRoute);
 
 
 const PORT = process.env.PORT || 3000;
