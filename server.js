@@ -12,7 +12,6 @@ app.use(express.json());
 app.use("/api/v1/alerts", webhookRoute);
 app.use("/api/v1/firewall", firewallRoute);
 
-
 const PORT = process.env.PORT || 3000;
 
 app.get("/", (req, res) => {

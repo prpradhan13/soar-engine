@@ -1,26 +1,26 @@
 [
   {
     "source_ip": "192.168.2.10",
-    "ip_version": "4",
-    "destination_port": "31350",
-    "protocol": "icmp",
-    "@timestamp": "2026-06-07T18:51:21.159308494Z",
     "source_port": "request",
+    "@timestamp": "2026-06-08T06:47:36.035803388Z",
+    "destination_port": "22296",
+    "protocol": "icmp",
+    "destination_ip": "192.168.1.105",
     "type": "pfsense",
     "action": "block",
-    "destination_ip": "192.168.1.105",
-    "interface": "em2"
+    "interface": "em2",
+    "ip_version": "4"
   },
   {
     "source_ip": "192.168.2.10",
-    "ip_version": "4",
-    "destination_port": "31350",
-    "protocol": "icmp",
-    "@timestamp": "2026-06-07T18:51:22.160527735Z",
     "source_port": "request",
+    "@timestamp": "2026-06-08T06:47:37.032447039Z",
+    "destination_port": "22296",
+    "protocol": "icmp",
+    "destination_ip": "192.168.1.105",
     "type": "pfsense",
     "action": "block",
-    "destination_ip": "192.168.1.105",
-    "interface": "em2"
+    "interface": "em2",
+    "ip_version": "4"
   }
 ]

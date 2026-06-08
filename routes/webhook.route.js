@@ -15,7 +15,6 @@ router.post('/webhook', (req, res) => {
     processFirewallAlert(logstashPayload);
 
     res.status(202).json({ success: true, message: 'Alert received and queued for orchestration.' });
-
 });
 
 export default router;

@@ -11,10 +11,8 @@ export const processFirewallAlert = (alert) => {
     const isInternalAsset = ipRangeCheck(attackerIp, CORPORATE_ALLOWLIST);
 
     if (isInternalAsset) {
-        // It's a false positive -> override the firewall block immediately
         sendUnblockCommandToFirewall(attackerIp, alert.interface);
     } else {
-        // It's a legitimate external threat -> analyze it with AI
         generateAIIncidentReport(alert);
     }
 };
