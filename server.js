@@ -2,10 +2,16 @@ import express from "express";
 import dotenv from "dotenv";
 import webhookRoute from "./routes/webhook.route.js";
 import firewallRoute from "./routes/firewall.route.js";
+import { connectDB } from "./config/db.js";
+import dns from "node:dns/promises";
+
+dns.setServers(["1.1.1.1", "0.0.0.0"]);
 
 dotenv.config();
+connectDB();
 
 const app = express();
+
 app.use(express.json());
 
 // Routes Declaration

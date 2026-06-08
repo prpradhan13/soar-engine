@@ -1,15 +1,14 @@
-import { triggerSlackAlert, blockIPAtFirewall } from "../services/firewall.service.js";
+import { processFirewallAlert } from "./playbook.controller.js";
 
-export const runIncidentPlaybook = (alert) => {
-    console.log(`\n[SOAR - ENGINE] Processing incoming alert: "${alert.alert_type}"`);
+export const logController = async (req, res) => {
+    const logstashPayload = req.body;
 
-    if (alert.severity === 'High' && (alert.alert_type === 'Brute Force' || alert.alert_type === 'Ransomware Activity')) {
-        console.log(`[SOAR - ENGINE] Match found: High-Risk Containment Playbook triggered.`);
-        triggerSlackAlert(alert);
-        blockIPAtFirewall(alert.attacker_ip);
-    } else if (alert.severity === 'Low') {
-        console.log(`[SOAR - ENGINE] Match found: Low-Risk Logging Playbook triggered. Documenting anomaly for review.`);
-    } else {
-        console.log(`[SOAR - ENGINE] Alert parsed. No immediate automated containment required.`);
+    if (!logstashPayload.source_ip || !logstashPayload.action) {
+        console.warn(`[SOAR - ENGINE] ⚠️ Received incomplete log data:`, logstashPayload);
+        return res.status(400).json({ success: false, message: 'Incomplete log parameters.' });
     }
-};
+
+    processFirewallAlert(logstashPayload);
+
+    res.status(202).json({ success: true, message: 'Alert received and queued for orchestration.' });
+}
